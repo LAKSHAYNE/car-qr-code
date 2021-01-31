@@ -12,7 +12,7 @@ app.post('/sms',function(req,res){
     const phloId='c634bcd4-9eff-4e10-95b0-f48642e24350';
     var payload = {
         from: '+1 844-955-3598',
-        to: '+918851423904',
+        to: 'phone number u want to contact to',
         item: 'THE WEEKND IS YOUR RELIGION'
     }
     phloClient = new PhloClient(authId, authToken);
