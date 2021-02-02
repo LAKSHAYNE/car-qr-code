@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express=require('express')
 const app=express()
 var plivo = require('plivo');
@@ -11,8 +12,8 @@ app.get('/',(req,res)=>res.sendFile(__dirname+'/index.html'))
 app.post('/sms',function(req,res){
     const phloId='c634bcd4-9eff-4e10-95b0-f48642e24350';
     var payload = {
-        from: '+1 844-955-3598',
-        to: 'phone number u want to contact to',
+        from: process.env.PHLO_NUM,
+        to: process.env.MY_NUM,
         item: 'THE WEEKND IS YOUR RELIGION'
     }
     phloClient = new PhloClient(authId, authToken);
@@ -29,8 +30,8 @@ app.post('/call',function(req,res){
     console.log('call button pressed');
     const phloId='d4304fc5-5338-4c4e-b755-7f9a70624900';
     var payload = {
-        from: '+1 844-955-3598',
-        to: '+918851423904'
+        from: process.env.PHLO_NUM,
+        to: process.env.MY_NUM
     }
     phloClient = new PhloClient(authId, authToken);
     phloClient.phlo(phloId).run(payload).then(function (result) {
