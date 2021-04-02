@@ -10,5 +10,13 @@
         <input type="text" name="phoneno" placeholder="enter number">
         <button type="submit">SUBMIT</button>
     </form>
+    <canvas id="canvas"></canvas>
+    <script src="bundle.js"></script> 
+    <script>
+        QRCode.toCanvas(document.getElementById('canvas'), 'sample text', function (error) {
+          if (error) console.error(error)
+          console.log('success!');
+        })
+      </script> 
 </body>
 </html>

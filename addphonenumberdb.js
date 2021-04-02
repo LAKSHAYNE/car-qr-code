@@ -14,13 +14,15 @@ const secret=process.env.ENCRYPTPHONENO
 phoneSchema.plugin(encrypt, { secret: secret ,encryptedFields:['phone'] });
 
 const phonenos=mongoose.model('phoneno',phoneSchema)
-app.get('/done',(req,res)=>{res.send('SUBMITTED')})
 
-app.post('/add',(req,res)=>{
+app.get('/done',(req,res)=>{res.sendFile(__dirname+'/qr.png')})
+
+app.post('/add',async (req,res)=>{
     const newphoneno=new phonenos({
         phone:req.body.phoneno
     })
     newphoneno.save()
+    let d=await QRCode.toFile(path='\qr.png',text='http://localhost:8080/?num='+req.body.phoneno,(err)=>console.log(err))
     console.log(req.body.phoneno);
     res.redirect('/done')
 })
@@ -30,6 +32,10 @@ app.get('/see',(req,res)=>{
         console.log(phonenum)
     });
 })
+
+
+const QRCode = require('qrcode')
+
 
 app.get('/',(req,res)=>res.sendFile(__dirname+'/phoneadd.html'))
 app.listen(3030,()=>console.log('server running on port 3030'))
