@@ -2,13 +2,11 @@ require('dotenv').config()
 const express=require('express')
 const app=express()
 var plivo = require('plivo');
-const url = require('url');
 var PhloClient = plivo.PhloClient;
 const authId=process.env.AUTHID;
 const authToken=process.env.AUTHTOKEN;
 var phloClient = phlo = null;
 let dailnum;
-let currentURL;
 app.get('/',function(req,res){
     const current_url = new URL(req.protocol + "://"+req.get('host') + req.originalUrl);
     const search_params = current_url.searchParams;//parsing to create a search params object
@@ -54,4 +52,5 @@ app.post('/check',function(req,res){
     res.redirect('/');
 })
 
-app.listen(3000,()=>console.log('server running on port 3000'))
+
+app.listen(8080,()=>console.log('server running on port 8080'))
