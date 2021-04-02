@@ -17,6 +17,7 @@
     "http": "0.0.1-security",
     "https": "^1.0.0",
     "mongoose": "^5.12.3",
+    "mongoose-encryption": "^2.0.3",
     "node-fetch": "^2.6.1",
     "plivo": "^4.14.0"
   }
